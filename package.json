@@ -3,9 +3,6 @@
   "version": "0.0.0",
   "description": "enables data manipulation functionality with sheetsee.js",
   "main": "index.js",
-  "bin": {
-    "sheetsee": "bin.js"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/jlord/sheetsee-core.git"
@@ -19,7 +16,8 @@
   },
   "keywords": [
     "spreadsheet",
-    "data"
+    "data",
+    "google spreadsheet"
   ],
   "dependencies": {
     "icanhaz": "~0.10.3"
