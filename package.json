@@ -1,16 +1,14 @@
 {
   "name": "sheetsee-core",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "enables data manipulation functionality with sheetsee.js",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/jlord/sheetsee-core.git"
   },
-  "author": {
-    "name": "Jessica Lord"
-  },
-  "license": "BSD",
+  "author": "Jessica Lord",
+  "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/jlord/sheetsee-core/issues"
   },
