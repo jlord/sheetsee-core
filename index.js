@@ -11,7 +11,6 @@ module.exports.getKeywordCount = function (data, keyword) {
     }
   })
   return group.length
-  if (group = []) return '0'
 }
 
 module.exports.getKeyword = function (data, keyword) {
