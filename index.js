@@ -96,8 +96,8 @@ module.exports.mostFrequent = function (data, category) {
     count[data[i][category]]++
   }
   var sortable = []
-  for (var category in count) {
-    sortable.push([category, count[category]])
+  for (var cat in count) {
+    sortable.push([cat, count[cat]])
   }
   sortable.sort(function (a, b) { return b[1] - a[1] })
   return sortable
@@ -107,15 +107,21 @@ module.exports.mostFrequent = function (data, category) {
 // thank you! http://james.padolsey.com/javascript/deep-copying-of-objects-and-arrays/
 module.exports.deepCopy = function (obj) {
   if (Object.prototype.toString.call(obj) === '[object Array]') {
-    var out = [], i = 0, len = obj.length
+    var out = []
+    var i = 0
+    var len = obj.length
+
     for (; i < len; i++) {
+      // TODO avoid callee
       out[i] = arguments.callee(obj[i])
     }
     return out
   }
   if (typeof obj === 'object') {
-    var out = {}, i
+    var out = {}
+    var i
     for (i in obj) {
+      // TODO avoid callee
       out[i] = arguments.callee(obj[i])
     }
     return out
