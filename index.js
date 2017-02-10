@@ -21,8 +21,9 @@ module.exports.getKeyword = function (data, keyword) {
       if (value.match(keyword.toLowerCase())) group.push(d)
     }
   })
+  // TODO do you want to return a string or an array?
+  if (group.length === 0) return 'no matches'
   return group
-  if (group = []) return 'no matches'
 }
 
 module.exports.getColumnTotal = function (data, column) {
