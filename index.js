@@ -1,8 +1,10 @@
+// TODO this module doesn't use ich but other parts of sheetsee do,
+// even though this is more, maybe best to add it in the CLI module sheetsee
 var ich = require('icanhaz')
-
 module.exports.ich = ich
 
 module.exports.getKeywordCount = function (data, keyword) {
+  // Returns number of times keyword occurs anywhere in the data
   var group = []
   data.forEach(function (d) {
     for (var key in d) {
@@ -14,6 +16,7 @@ module.exports.getKeywordCount = function (data, keyword) {
 }
 
 module.exports.getKeyword = function (data, keyword) {
+  // Returns an array of rows that contain the keyword
   var group = []
   data.forEach(function (d) {
     for (var key in d) {
@@ -27,6 +30,8 @@ module.exports.getKeyword = function (data, keyword) {
 }
 
 module.exports.getColumnTotal = function (data, column) {
+  // Returns the sum of a column of numbers
+  // TODO reject cells that aren't numbers
   var total = []
   data.forEach(function (d) {
     if (d[column] === '') return
@@ -44,6 +49,8 @@ module.exports.getColumnAverage = function (data, column) {
 }
 
 module.exports.getMax = function (data, column) {
+  // returns rows with the higest value in column
+  // TODO FIX
   var result = []
   data.forEach(function (element) {
     if (result.length === 0) return result.push(element)
@@ -77,6 +84,7 @@ module.exports.getMin = function (data, column) {
   return result
 }
 
+// TODO /s/category/column
 // out of the data, filter something from a category
 module.exports.getMatches = function (data, filter, category) {
   var matches = []
@@ -87,6 +95,7 @@ module.exports.getMatches = function (data, filter, category) {
   return matches
 }
 
+// s/Frequent/Fequency
 module.exports.mostFrequent = function (data, category) {
   var count = {}
   for (var i = 0; i < data.length; i++) {
