@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "enables data manipulation functionality with sheetsee.js",
   "main": "index.js",
+  "scripts": {
+    "test": "standard"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/jlord/sheetsee-core.git"
@@ -19,5 +22,8 @@
   ],
   "dependencies": {
     "icanhaz": "~0.10.3"
+  },
+  "devDependencies": {
+    "standard": "^8.6.0"
   }
 }
