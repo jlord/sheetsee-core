@@ -3,7 +3,7 @@
 var ich = require('icanhaz')
 module.exports.ich = ich
 
-module.exports.getKeywordCount = function (data, keyword) {
+function getKeywordCount (data, keyword) {
   // Returns number of times keyword occurs anywhere in the data
   var group = []
   data.forEach(function (d) {
@@ -15,7 +15,7 @@ module.exports.getKeywordCount = function (data, keyword) {
   return group.length
 }
 
-module.exports.getKeyword = function (data, keyword) {
+function getKeyword (data, keyword) {
   // Returns an array of rows that contain the keyword
   var group = []
   data.forEach(function (d) {
@@ -29,7 +29,7 @@ module.exports.getKeyword = function (data, keyword) {
   return group
 }
 
-module.exports.getColumnTotal = function (data, column) {
+function getColumnTotal (data, column) {
   // Returns the sum of a column of numbers
   // TODO reject cells that aren't numbers
   var total = []
@@ -42,13 +42,13 @@ module.exports.getColumnTotal = function (data, column) {
   })
 }
 
-module.exports.getColumnAverage = function (data, column) {
+function getColumnAverage (data, column) {
   var total = getColumnTotal(data, column)
   var average = total / data.length
   return average
 }
 
-module.exports.getMax = function (data, column) {
+function getMax (data, column) {
   // returns rows with the higest value in column
   // TODO FIX
   var result = []
@@ -67,7 +67,7 @@ module.exports.getMax = function (data, column) {
   return result
 }
 
-module.exports.getMin = function (data, column) {
+function getMin (data, column) {
   var result = []
   data.forEach(function (element) {
     if (result.length === 0) return result.push(element)
@@ -86,7 +86,7 @@ module.exports.getMin = function (data, column) {
 
 // TODO /s/category/column
 // out of the data, filter something from a category
-module.exports.getMatches = function (data, filter, category) {
+function getMatches (data, filter, category) {
   var matches = []
   data.forEach(function (element) {
     var projectType = element[category].toString().toLowerCase()
@@ -95,26 +95,14 @@ module.exports.getMatches = function (data, filter, category) {
   return matches
 }
 
-// s/Frequent/Fequency
-module.exports.mostFrequent = function (data, category) {
-  var count = {}
-  for (var i = 0; i < data.length; i++) {
-    if (!count[data[i][category]]) {
-      count[data[i][category]] = 0
-    }
-    count[data[i][category]]++
-  }
-  var sortable = []
-  for (var cat in count) {
-    sortable.push([cat, count[cat]])
-  }
-  sortable.sort(function (a, b) { return b[1] - a[1] })
-  return sortable
-    // returns array of arrays, in order
+// TODO maybe remove this all together
+function mostFrequent (data, category) {
+  // this now maps to getOccurance
+  return getOccurance(data, category)
 }
 
 // thank you! http://james.padolsey.com/javascript/deep-copying-of-objects-and-arrays/
-module.exports.deepCopy = function (obj) {
+function deepCopy (obj) {
   if (Object.prototype.toString.call(obj) === '[object Array]') {
     var out = []
     var i = 0
@@ -138,7 +126,8 @@ module.exports.deepCopy = function (obj) {
   return obj
 }
 
-module.exports.getOccurance = function (data, category) {
+// This is same as frequency just formatter better
+function getOccurance (data, category) {
   var occuranceCount = {}
   for (var i = 0; i < data.length; i++) {
     if (!occuranceCount[data[i][category]]) {
@@ -150,7 +139,7 @@ module.exports.getOccurance = function (data, category) {
   // returns object, keys alphabetical
 }
 
-module.exports.makeColorArrayOfObject = function (data, colors, category) {
+function makeColorArrayOfObject (data, colors, category) {
   var category = category
   var keys = Object.keys(data)
   var counter = 1
@@ -167,7 +156,7 @@ module.exports.makeColorArrayOfObject = function (data, colors, category) {
   })
 }
 
-module.exports.makeArrayOfObject = function (data) {
+function makeArrayOfObject (data) {
   var keys = Object.keys(data)
   return keys.map(function (key) {
     // var h = {label: key, units: data[key], hexcolor: "#FDBDBD"}
@@ -175,3 +164,16 @@ module.exports.makeArrayOfObject = function (data) {
     return h
   })
 }
+
+module.exports.getKeywordCount = getKeywordCount
+module.exports.getKeyword = getKeyword
+module.exports.getColumnTotal = getColumnTotal
+module.exports.getColumnAverage = getColumnAverage
+module.exports.getMax = getMax
+module.exports.getMin = getMin
+module.exports.getMatches = getMatches
+module.exports.deepCopy = deepCopy
+module.exports.mostFrequent = mostFrequent
+module.exports.getOccurance = getOccurance
+module.exports.makeArrayOfObject = makeArrayOfObject
+module.exports.makeColorArrayOfObject = makeColorArrayOfObject
