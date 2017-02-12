@@ -1,8 +1,3 @@
-// TODO this module doesn't use ich but other parts of sheetsee do,
-// even though this is more, maybe best to add it in the CLI module sheetsee
-var ich = require('icanhaz')
-module.exports.ich = ich
-
 function getKeywordCount (data, keyword) {
   // Returns number of times keyword occurs anywhere in the data
   var group = []
