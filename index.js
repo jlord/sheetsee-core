@@ -1,5 +1,6 @@
+// Returns number of times keyword occurs anywhere in the data
+// data: array of objects, keyword: string
 function getKeywordCount (data, keyword) {
-  // Returns number of times keyword occurs anywhere in the data
   var group = []
   data.forEach(function (d) {
     for (var key in d) {
@@ -10,8 +11,9 @@ function getKeywordCount (data, keyword) {
   return group.length
 }
 
+// Returns an array of rows that contain the keyword
+// data: array of objects, keyword: string
 function getKeyword (data, keyword) {
-  // Returns an array of rows that contain the keyword
   var group = []
   data.forEach(function (d) {
     for (var key in d) {
@@ -24,8 +26,9 @@ function getKeyword (data, keyword) {
   return group
 }
 
+// Returns the sum of a column of numbers
+// data: array of objects, column: string
 function getColumnTotal (data, column) {
-  // Returns the sum of a column of numbers
   // TODO reject cells that aren't numbers
   var total = []
   data.forEach(function (d) {
@@ -37,54 +40,68 @@ function getColumnTotal (data, column) {
   })
 }
 
+// Returns the average of a column of numbers
+// data: array of objects, column: string
 function getColumnAverage (data, column) {
   var total = getColumnTotal(data, column)
   var average = total / data.length
   return average
 }
 
+// Returns rows with the higest value in column
+// data: array of objects, column: string
 function getMax (data, column) {
-  // returns rows with the higest value in column
-  // TODO FIX
   var result = []
   data.forEach(function (element) {
+    // We are checking that the element is a number
+    if (!parseInt(element[column].valueOf())) return
     if (result.length === 0) return result.push(element)
-    else {
-      if (element[column].valueOf() > result[0][column].valueOf()) {
-        result.length = 0
-        return result.push(element)
-      }
-      if (element[column].valueOf() === result[0][column].valueOf()) {
-        return result.push(element)
-      }
+
+    var currentMax = parseInt(result[0][column].valueOf())
+    var comparing = parseInt(element[column].valueOf())
+
+    if (comparing < currentMax) return
+    if (comparing === currentMax) return result.push(element)
+    if (comparing > currentMax) {
+      result = []
+      return result.push(element)
     }
   })
+  // It will return an empty array if there are
+  // no numbers in the column specified
   return result
 }
 
+// Returns rows with the lowest value in column
+// data: array of objects, column: string
 function getMin (data, column) {
   var result = []
   data.forEach(function (element) {
+    // We are checking that the element is a number
+    if (!parseInt(element[column].valueOf())) return
     if (result.length === 0) return result.push(element)
-    else {
-      if (element[column].valueOf() < result[0][column].valueOf()) {
-        result.length = 0
-        return result.push(element)
-      }
-      if (element[column].valueOf() === result[0][column].valueOf()) {
-        return result.push(element)
-      }
+
+    var currentMax = parseInt(result[0][column].valueOf())
+    var comparing = parseInt(element[column].valueOf())
+
+    if (comparing > currentMax) return
+    if (comparing === currentMax) return result.push(element)
+    if (comparing < currentMax) {
+      result = []
+      return result.push(element)
     }
   })
+  // It will return an empty array if there are
+  // no numbers in the column specified
   return result
 }
 
-// TODO /s/category/column
-// out of the data, filter something from a category
-function getMatches (data, filter, category) {
+// Returns array of rows with elements in the column that match the filter
+// data: array of objects, filter: string, column: string
+function getMatches (data, filter, column) {
   var matches = []
   data.forEach(function (element) {
-    var projectType = element[category].toString().toLowerCase()
+    var projectType = element[column].toString().toLowerCase()
     if (projectType === filter.toLowerCase()) matches.push(element)
   })
   return matches
@@ -96,6 +113,7 @@ function mostFrequent (data, category) {
   return getOccurance(data, category)
 }
 
+// TODO When is this used and find a better way to do it
 // thank you! http://james.padolsey.com/javascript/deep-copying-of-objects-and-arrays/
 function deepCopy (obj) {
   if (Object.prototype.toString.call(obj) === '[object Array]') {
@@ -134,6 +152,8 @@ function getOccurance (data, category) {
   // returns object, keys alphabetical
 }
 
+// TODO Remember what this is supposed to be for and
+// see if it is actually doing that
 function makeColorArrayOfObject (data, colors, category) {
   var category = category
   var keys = Object.keys(data)
@@ -151,6 +171,7 @@ function makeColorArrayOfObject (data, colors, category) {
   })
 }
 
+// TODO Also what is this used for
 function makeArrayOfObject (data) {
   var keys = Object.keys(data)
   return keys.map(function (key) {
