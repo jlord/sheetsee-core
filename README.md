@@ -1,3 +1,5 @@
+[![Standard - JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
+
 # Sheetsee-core
 
 This is the core module in sheetsee and is included in all builds. It contains methods for basic data manipulation you might want to do.
