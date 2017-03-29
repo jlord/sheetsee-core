@@ -22,7 +22,6 @@
     "google spreadsheet"
   ],
   "dependencies": {
-    "icanhaz": "~0.10.3"
   },
   "devDependencies": {
     "standard": "^8.6.0",
