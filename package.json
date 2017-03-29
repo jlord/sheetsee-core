@@ -1,6 +1,6 @@
 {
   "name": "sheetsee-core",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "enables data manipulation functionality with sheetsee.js",
   "main": "index.js",
   "scripts": {
