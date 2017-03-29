@@ -59,34 +59,9 @@ test('getMatches', function (t) {
   t.deepLooseEqual(result, expected, 'returns rows with matching cell in column')
 })
 
-// TODO Fix and test deepcopy
-
-test('deepCopy', function (t) {
-  t.plan(1)
-  var result = sheetseeCore.deepCopy(data[0])
-  var expected = { Animal: 'Cat', Name: 'Liza', Rating: '10' }
-  t.deepEquals(result, expected, 'returns object with frequcency of item in column')
-})
-
 test('getOccurance', function (t) {
   t.plan(1)
   var result = sheetseeCore.getOccurance(data, 'Animal')
   var expected = {Cat: 3, Dog: 2}
   t.deepLooseEqual(result, expected, 'returns object with frequcency of item in column')
-})
-
-// TODO what is this supposed to do lol
-test('makeColorArrayOfObject', function (t) {
-  t.plan(1)
-  var result = sheetseeCore.makeColorArrayOfObject(data, ['#fff', '#333'], 'Animal')
-  var expected = [ { Animal: '0', hexcolor: '#333', units: { Animal: 'Cat', Name: 'Liza', Rating: '10' } }, { Animal: '1', hexcolor: '#fff', units: { Animal: 'Dog', Name: 'Boo', Rating: '10' } }, { Animal: '2', hexcolor: '#333', units: { Animal: 'Dog', Name: 'Sam', Rating: '9' } }, { Animal: '3', hexcolor: '#fff', units: { Animal: 'Cat', Name: 'Snowy', Rating: '8' } }, { Animal: '4', hexcolor: '#333', units: { Animal: 'Cat', Name: 'Trisana', Rating: '7' } } ]
-  t.deepLooseEqual(result, expected, 'not sure yet what this is for')
-})
-
-// TODO what is this supposed to do lol
-test('makeArrayOfObject', function (t) {
-  t.plan(1)
-  var result = sheetseeCore.makeArrayOfObject(data)
-  var expected = [ { label: '0', units: { Animal: 'Cat', Name: 'Liza', Rating: '10' } }, { label: '1', units: { Animal: 'Dog', Name: 'Boo', Rating: '10' } }, { label: '2', units: { Animal: 'Dog', Name: 'Sam', Rating: '9' } }, { label: '3', units: { Animal: 'Cat', Name: 'Snowy', Rating: '8' } }, { label: '4', units: { Animal: 'Cat', Name: 'Trisana', Rating: '7' } } ]
-  t.deepLooseEqual(result, expected, 'not sure yet what this is for')
 })
